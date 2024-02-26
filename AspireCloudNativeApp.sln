@@ -1,0 +1,48 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34607.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireCloudNativeApp.AppHost", "AspireCloudNativeApp.AppHost\AspireCloudNativeApp.AppHost.csproj", "{DFFD656E-D916-449E-9C16-31EBB7760359}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireCloudNativeApp.ServiceDefaults", "AspireCloudNativeApp.ServiceDefaults\AspireCloudNativeApp.ServiceDefaults.csproj", "{A952C159-CE9F-4331-A6A0-D6CCBE7620F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireCloudNativeApp.WeatherApi", "AspireCloudNativeApp.ApiService\AspireCloudNativeApp.WeatherApi.csproj", "{0555F029-9018-4B28-ACD3-735B39B1294A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspireCloudNativeApp.Web", "AspireCloudNativeApp.Web\AspireCloudNativeApp.Web.csproj", "{EB2EBB61-56BB-4757-A92C-FB9CFC3E5985}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{699D79F1-9322-4A02-BEED-F6987A1AE5C1}"
+	ProjectSection(SolutionItems) = preProject
+		AspireCloudNativeApp.AppHost\aspire-manifest.json = AspireCloudNativeApp.AppHost\aspire-manifest.json
+		publish-manifest.ps1 = publish-manifest.ps1
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DFFD656E-D916-449E-9C16-31EBB7760359}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DFFD656E-D916-449E-9C16-31EBB7760359}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DFFD656E-D916-449E-9C16-31EBB7760359}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DFFD656E-D916-449E-9C16-31EBB7760359}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A952C159-CE9F-4331-A6A0-D6CCBE7620F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A952C159-CE9F-4331-A6A0-D6CCBE7620F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A952C159-CE9F-4331-A6A0-D6CCBE7620F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A952C159-CE9F-4331-A6A0-D6CCBE7620F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0555F029-9018-4B28-ACD3-735B39B1294A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0555F029-9018-4B28-ACD3-735B39B1294A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0555F029-9018-4B28-ACD3-735B39B1294A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0555F029-9018-4B28-ACD3-735B39B1294A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB2EBB61-56BB-4757-A92C-FB9CFC3E5985}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB2EBB61-56BB-4757-A92C-FB9CFC3E5985}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB2EBB61-56BB-4757-A92C-FB9CFC3E5985}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB2EBB61-56BB-4757-A92C-FB9CFC3E5985}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4CF5A0DE-1F0B-45A8-A2CC-90E345BD9073}
+	EndGlobalSection
+EndGlobal

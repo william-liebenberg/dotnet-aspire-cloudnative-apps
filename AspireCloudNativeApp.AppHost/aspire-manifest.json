@@ -1,0 +1,96 @@
+{
+  "resources": {
+    "cache": {
+      "type": "redis.v0"
+    },
+    "sampleapi": {
+      "type": "container.v0",
+      "image": "mcr.microsoft.com/dotnet/samples:aspnetapp",
+      "bindings": {
+        "sampleApiEndpoint": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http",
+          "containerPort": 8080
+        }
+      }
+    },
+    "sql": {
+      "type": "container.v0",
+      "image": "mcr.microsoft.com/mssql/server:2022-latest",
+      "env": {
+        "ACCEPT_EULA": "Y",
+        "MSSQL_SA_PASSWORD": "{sql.inputs.password}"
+      },
+      "bindings": {
+        "tcp": {
+          "scheme": "tcp",
+          "protocol": "tcp",
+          "transport": "tcp",
+          "containerPort": 1433
+        }
+      },
+      "connectionString": "Server={sql.bindings.tcp.host},{sql.bindings.tcp.port};User ID=sa;Password={sql.inputs.password};TrustServerCertificate=true;",
+      "inputs": {
+        "password": {
+          "type": "string",
+          "secret": true,
+          "default": {
+            "generate": {
+              "minLength": 10
+            }
+          }
+        }
+      }
+    },
+    "sqldb": {
+      "type": "sqlserver.database.v0",
+      "parent": "sql"
+    },
+    "weatherapi": {
+      "type": "project.v0",
+      "path": "../AspireCloudNativeApp.ApiService/AspireCloudNativeApp.WeatherApi.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "ConnectionStrings__sql": "{sql.connectionString}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    },
+    "webfrontend": {
+      "type": "project.v0",
+      "path": "../AspireCloudNativeApp.Web/AspireCloudNativeApp.Web.csproj",
+      "env": {
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EXCEPTION_LOG_ATTRIBUTES": "true",
+        "OTEL_DOTNET_EXPERIMENTAL_OTLP_EMIT_EVENT_LOG_ATTRIBUTES": "true",
+        "ConnectionStrings__cache": "{cache.connectionString}",
+        "services__weatherapi__0": "{weatherapi.bindings.http.url}",
+        "services__weatherapi__1": "{weatherapi.bindings.https.url}",
+        "services__sampleapi__0": "{sampleapi.bindings.sampleApiEndpoint.url}"
+      },
+      "bindings": {
+        "http": {
+          "scheme": "http",
+          "protocol": "tcp",
+          "transport": "http"
+        },
+        "https": {
+          "scheme": "https",
+          "protocol": "tcp",
+          "transport": "http"
+        }
+      }
+    }
+  }
+}

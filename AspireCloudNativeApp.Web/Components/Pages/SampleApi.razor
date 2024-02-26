@@ -1,0 +1,74 @@
+﻿@page "/sampleApi"
+@attribute [StreamRendering(true)]
+@attribute [OutputCache(Duration = 5)]
+
+@inject SampleApiClient SampleApiClient
+
+<PageTitle>Sample API Container</PageTitle>
+
+<h1>Sample API Container</h1>
+
+<p>This component demonstrates showing data loaded from a backend API service running in a container.</p>
+
+@if (environment == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>User</td>
+                <td>@(environment.User)</td>
+            </tr>
+            <tr>
+                <td>Host Name</td>
+                <td>@(environment.HostName)</td>
+            </tr>
+            <tr>
+                <td>Operating System Architecture</td>
+                <td>@(environment.OsArchitecture)</td>
+            </tr>
+            <tr>
+                <td>Operating System Version</td>
+                <td>@(environment.OsVersion)</td>
+            </tr>
+            <tr>
+                <td>Processor Count</td>
+                <td>@(environment.ProcessorCount)</td>
+            </tr>
+            <tr>
+                <td>Runtime Version</td>
+                <td>@(environment.RuntimeVersion)</td>
+            </tr>
+            <tr>
+                <td>Memory Limit</td>
+                <td>@(environment.MemoryLimit.FormatSize())</td>
+            </tr>
+            <tr>
+                <td>Memory Usage</td>
+                <td>@(environment.MemoryUsage.FormatSize())</td>
+            </tr>
+            <tr>
+                <td>Total Available Memory (Bytes)</td>
+                <td>@(environment.TotalAvailableMemoryBytes.FormatSize())</td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+@code {
+    private ApiEnvironment? environment;
+
+    protected override async Task OnInitializedAsync()
+    {
+        environment = await SampleApiClient.GetEnvironment();
+    }
+}
